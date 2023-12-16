@@ -5,11 +5,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.ecomee.R;
 import com.example.ecomee.adapters.CategoryAdapter;
 import com.example.ecomee.adapters.ProductAdapter;
 import com.example.ecomee.databinding.ActivityMainBinding;
 import com.example.ecomee.model.Category;
 import com.example.ecomee.model.Product;
+
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
 
@@ -32,7 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         initCategories();
         initProducts();
+        initSlider();
     }
+
+    private void initSlider() {
+        // Assuming the image is in res/drawable and named baby_picture.jpg
+        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men2,"T-Shirt New"));
+        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.sale_banner,"sale"));
+        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men1,"T shirt"));
+    }
+
 
     void initCategories(){
         categories = new ArrayList<>();
