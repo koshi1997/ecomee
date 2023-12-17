@@ -16,7 +16,8 @@
         tools:targetApi="34">
         <activity
             android:name=".activities.ProductDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Ecomee.Actionbar"/>
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

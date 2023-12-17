@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ecomee.R;
 import com.example.ecomee.adapters.CategoryAdapter;
 import com.example.ecomee.adapters.ProductAdapter;
 import com.example.ecomee.databinding.ActivityMainBinding;
@@ -50,74 +47,170 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSlider() {
         // Assuming the image is in res/drawable and named baby_picture.jpg
-        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men2,"T-Shirt New"));
-        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.sale_banner,"sale"));
-        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men1,"T shirt"));
+//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men2, "T-Shirt New"));
+//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.sale_banner, "sale"));
+//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men1, "T shirt"));
+        getRecentOffers();
     }
 
 
-    void initCategories(){
+    void initCategories() {
         categories = new ArrayList<>();
-        categoryAdapter = new CategoryAdapter(this,categories);
+        categoryAdapter = new CategoryAdapter(this, categories);
 
         getCategories();
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this,4);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
         binding.categoriesList.setLayoutManager(layoutManager);
         binding.categoriesList.setAdapter(categoryAdapter);
     }
 
-    void getCategories(){
+    void getCategories() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_CATEGORIES_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject mainObj = new JSONObject(response);
-                    if (mainObj.getString("status").equals("success")){
-                        JSONArray categoriesArray = mainObj.getJSONArray("categories");
-                        for (int i = 0; i < categoriesArray.length(); i++){
-                            JSONObject object = categoriesArray.getJSONObject(i);
-                            Category category = new Category(
-                                    object.getString("name"),
-                                    Constants.CATEGORIES_IMAGE_URL + object.getString("icon"),
-                                    object.getString("color"),
-                                    object.getString("brief"),
-                                    object.getInt("id")
-                            );
-                            categories.add(category);
-                        }
-                        categoryAdapter.notifyDataSetChanged();
-                    }else {
-
+        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_CATEGORIES_URL, response -> {
+            try {
+                JSONObject mainObj = new JSONObject(response);
+                if (mainObj.getString("status").equals("success")) {
+                    JSONArray categoriesArray = mainObj.getJSONArray("categories");
+                    for (int i = 0; i < categoriesArray.length(); i++) {
+                        JSONObject object = categoriesArray.getJSONObject(i);
+                        Category category = new Category(
+                                object.getString("name"),
+                                Constants.CATEGORIES_IMAGE_URL + object.getString("icon"),
+                                object.getString("color"),
+                                object.getString("brief"),
+                                object.getInt("id")
+                        );
+                        categories.add(category);
                     }
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                    categoryAdapter.notifyDataSetChanged();
+                } else {
+
                 }
-
-
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-            }
-        });
+
+        }, error -> {});
         queue.add(request);
     }
-    void  initProducts(){
+
+    void initProducts() {
         products = new ArrayList<>();
-        products.add(new Product("baby","https://thumbs.dreamstime.com/b/top-view-fashion-trendy-look-kids-clothes-103930087.jpg","READY STOCK",52,54,20,1));
-        products.add(new Product("baby","https://thumbs.dreamstime.com/b/top-view-fashion-trendy-look-kids-clothes-103930087.jpg","READY STOCK",52,20,20,2));
-        products.add(new Product("baby","https://thumbs.dreamstime.com/b/top-view-fashion-trendy-look-kids-clothes-103930087.jpg","READY STOCK",52,30,20,3));
-        products.add(new Product("baby","https://thumbs.dreamstime.com/b/top-view-fashion-trendy-look-kids-clothes-103930087.jpg","READY STOCK",52,10,20,4));
-        products.add(new Product("baby","https://thumbs.dreamstime.com/b/top-view-fashion-trendy-look-kids-clothes-103930087.jpg","READY STOCK",52,15,20,5));
-        productAdapter = new ProductAdapter(this,products);
+        productAdapter = new ProductAdapter(this, products);
 
+        getRecentProducts();
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         binding.productList.setLayoutManager(layoutManager);
         binding.productList.setAdapter(productAdapter);
+    }
+
+    void getRecentProducts() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = Constants.GET_PRODUCTS_URL + "?count=8";
+        StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                JSONObject object = new JSONObject(response);
+                if (object.getString("status").equals("success")) {
+                    JSONArray productsArray = object.getJSONArray("products");
+                    for (int i = 0; i < productsArray.length(); i++) {
+                        JSONObject childObj = productsArray.getJSONObject(i);
+
+                        // Check if the "discount" key exists
+                        double discount = childObj.has("discount") ? childObj.getDouble("discount") : 0.0;
+
+                        Product product = new Product(
+                                childObj.getString("name"),
+                                Constants.PRODUCTS_IMAGE_URL + childObj.getString("image"),
+                                childObj.getString("status"),
+                                childObj.getDouble("price"),
+                                discount,  // Use the value or a default (e.g., 0.0) if the key is not present
+                                childObj.getInt("stock"),
+                                childObj.getInt("id")
+                        );
+
+                        products.add(product);
+                    }
+                    productAdapter.notifyDataSetChanged();
+                } else {
+                    // Handle the case when the status is not "success"
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                // Handle JSON parsing error
+            }
+        }, error -> {
+            error.printStackTrace();
+            // Handle Volley error
+        });
+
+        queue.add(request);
+    }
+
+//    void getProducts() {
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_PRODUCTS_URL, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject mainObj = new JSONObject(response);
+//                    if (mainObj.getString("status").equals("success")) {
+//                        JSONArray productsArray = mainObj.getJSONArray("products");
+//                        for (int i = 0; i < productsArray.length(); i++) {
+//                            JSONObject object = productsArray.getJSONObject(i);
+//                            Product product = new Product(
+//                                    object.getString("name"),
+//                                    object.getString("image"),
+//                                    object.getString("status"),
+//                                    object.getDouble("price"),
+//                                    object.getDouble("discount"),
+//                                    object.getInt("stock"),
+//                                    object.getInt("id")
+//                            );
+//                            products.add(product);
+//                        }
+//                        categoryAdapter.notifyDataSetChanged();
+//                    } else {
+//
+//                    }
+//                } catch (JSONException e) {
+//                    throw new RuntimeException(e);
+//                }
+//
+//
+//            }
+//        }, error -> {
+//
+//        });
+//        queue.add(request);
+//    }
+
+    void getRecentOffers(){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_OFFERS_URL, response -> {
+            try {
+                JSONObject object = new JSONObject(response);
+                if (object.getString("status").equals("success")) {
+                    JSONArray offerArray = object.getJSONArray("news_infos");
+                    for (int i = 0; i < offerArray.length(); i++) {
+                        JSONObject childObj = offerArray.getJSONObject(i);
+                        binding.carousel.addData(
+                                new CarouselItem(
+                                      Constants.NEWS_IMAGE_URL + childObj.getString("image"),
+                                        childObj.getString("title")
+                                )
+                        );
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {});
+        queue.add(request);
     }
 
 }

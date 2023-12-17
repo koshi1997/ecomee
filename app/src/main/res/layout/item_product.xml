@@ -26,6 +26,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                android:padding="10dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/placeholder" />
 
@@ -36,7 +37,10 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textAlignment="center"
+                android:ellipsize="end"
+                android:maxLines="2"/>
 
             <TextView
                 android:id="@+id/price"
@@ -46,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="LKR 2400"
+                android:textAlignment="center"
                 android:textColor="#070707"
                 android:textSize="18sp" />
         </LinearLayout>
