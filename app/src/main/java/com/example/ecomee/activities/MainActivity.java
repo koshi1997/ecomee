@@ -5,14 +5,24 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ecomee.R;
 import com.example.ecomee.adapters.CategoryAdapter;
 import com.example.ecomee.adapters.ProductAdapter;
 import com.example.ecomee.databinding.ActivityMainBinding;
 import com.example.ecomee.model.Category;
 import com.example.ecomee.model.Product;
+import com.example.ecomee.utility.Constants;
 
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -48,17 +58,52 @@ public class MainActivity extends AppCompatActivity {
 
     void initCategories(){
         categories = new ArrayList<>();
-        categories.add(new Category("baby","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png","#fe438e","Groomer Baby Clothing | Babies 0-24 Months | Preemie Baby Clothing",1));
-        categories.add(new Category("baby","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png","#18ab4e","Groomer Baby Clothing | Babies 0-24 Months | Preemie Baby Clothing",1));
-        categories.add(new Category("baby","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png","#fb0504","Groomer Baby Clothing | Babies 0-24 Months | Preemie Baby Clothing",1));
-        categories.add(new Category("baby","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png","#4186ff","Groomer Baby Clothing | Babies 0-24 Months | Preemie Baby Clothing",1));
-        categories.add(new Category("baby","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png","#BF360C","Groomer Baby Clothing | Babies 0-24 Months | Preemie Baby Clothing",1));
         categoryAdapter = new CategoryAdapter(this,categories);
 
+        getCategories();
 
         GridLayoutManager layoutManager = new GridLayoutManager(this,4);
         binding.categoriesList.setLayoutManager(layoutManager);
         binding.categoriesList.setAdapter(categoryAdapter);
+    }
+
+    void getCategories(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_CATEGORIES_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject mainObj = new JSONObject(response);
+                    if (mainObj.getString("status").equals("success")){
+                        JSONArray categoriesArray = mainObj.getJSONArray("categories");
+                        for (int i = 0; i < categoriesArray.length(); i++){
+                            JSONObject object = categoriesArray.getJSONObject(i);
+                            Category category = new Category(
+                                    object.getString("name"),
+                                    Constants.CATEGORIES_IMAGE_URL + object.getString("icon"),
+                                    object.getString("color"),
+                                    object.getString("brief"),
+                                    object.getInt("id")
+                            );
+                            categories.add(category);
+                        }
+                        categoryAdapter.notifyDataSetChanged();
+                    }else {
+
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(request);
     }
     void  initProducts(){
         products = new ArrayList<>();
