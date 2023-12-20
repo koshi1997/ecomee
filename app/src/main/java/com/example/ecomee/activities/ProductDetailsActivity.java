@@ -1,10 +1,15 @@
 package com.example.ecomee.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,7 +20,10 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.ecomee.R;
 import com.example.ecomee.databinding.ActivityProductDetailsBinding;
+import com.example.ecomee.model.Product;
 import com.example.ecomee.utility.Constants;
+import com.hishd.tinycart.model.Cart;
+import com.hishd.tinycart.util.TinyCartHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +31,7 @@ import org.json.JSONObject;
 public class ProductDetailsActivity extends AppCompatActivity {
 
     ActivityProductDetailsBinding binding;
+    Product currentProduct;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -45,6 +54,29 @@ public class ProductDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(name);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        Cart cart = TinyCartHelper.getCart();
+
+        binding.addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cart.addItem(currentProduct,1);
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cart ,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.cart){
+            startActivity(new Intent(this , CartActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -65,6 +97,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         String desc = product.getString("description");
                         binding.productDesc.setText(
                                 Html.fromHtml(desc)
+                        );
+                        double discount = product.has("discount") ? product.getDouble("discount") : 0.0;
+                        currentProduct = new Product(
+                                product.getString("name"),
+                                Constants.PRODUCTS_IMAGE_URL + product.getString("image"),
+                                product.getString("status"),
+                                product.getDouble("price"),
+                                discount,  // Use the value or a default (e.g., 0.0) if the key is not present
+                                product.getInt("stock"),
+                                product.getInt("id")
                         );
 
                     }
