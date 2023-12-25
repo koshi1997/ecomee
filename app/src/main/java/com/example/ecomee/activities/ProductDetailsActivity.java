@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ActivityProductDetailsBinding binding;
     Product currentProduct;
 
-    @SuppressLint("RestrictedApi")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(name);
 
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Cart cart = TinyCartHelper.getCart();
 
@@ -61,6 +62,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cart.addItem(currentProduct,1);
+                binding.addToCart.setEnabled(false);
+                binding.addToCart.setText("Added in cart");
+                Toast.makeText(ProductDetailsActivity.this, "Product Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
     }
