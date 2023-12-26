@@ -1,6 +1,7 @@
 package com.example.ecomee.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.ecomee.R;
+import com.example.ecomee.activities.CategoryActivity;
 import com.example.ecomee.databinding.ItemCategoriesBinding;
 import com.example.ecomee.model.Category;
 
@@ -44,6 +46,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         holder.binding.image.setBackgroundColor(Color.parseColor(category.getColor()));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CategoryActivity.class);
+                intent.putExtra("catId",category.getId());
+                intent.putExtra("categoryName",category.getName());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

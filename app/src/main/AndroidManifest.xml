@@ -15,11 +15,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
+            android:name=".activities.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Ecomee.Actionbar"/>
+        <activity
+            android:name=".activities.CategoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Ecomee.Actionbar" />
+        <activity
             android:name=".activities.PaymentActivity"
             android:exported="false"
             android:label="Payment"
-            android:theme="@style/Theme.Ecomee.Actionbar"
-            />
+            android:theme="@style/Theme.Ecomee.Actionbar" />
         <activity
             android:name=".activities.CheckoutActivity"
             android:exported="false"
