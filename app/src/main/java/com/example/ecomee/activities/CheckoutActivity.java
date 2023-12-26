@@ -153,13 +153,10 @@ public class CheckoutActivity extends AppCompatActivity {
                             .setTitle("Order Successful")
                             .setCancelable(false)
                             .setMessage("Your Order number is :"+ orderNumber)
-                            .setPositiveButton("pay Now", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(CheckoutActivity.this,PaymentActivity.class);
-                                    intent.putExtra("orderCode",orderNumber);
-                                    startActivity(intent);
-                                }
+                            .setPositiveButton("pay Now", (dialogInterface, i) -> {
+                                Intent intent = new Intent(CheckoutActivity.this,PaymentActivity.class);
+                                intent.putExtra("orderCode",orderNumber);
+                                startActivity(intent);
                             }).show();
                 }else {
                     new AlertDialog.Builder(CheckoutActivity.this)
