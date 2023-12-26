@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
             public void onSearchStateChanged(boolean enabled) {
@@ -67,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSlider() {
-        // Assuming the image is in res/drawable and named baby_picture.jpg
-//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men2, "T-Shirt New"));
-//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.sale_banner, "sale"));
-//        binding.carousel.addData(new CarouselItem("android.resource://" + getPackageName() + "/" + R.drawable.men1, "T shirt"));
         getRecentOffers();
     }
 
@@ -169,44 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(request);
     }
-
-//    void getProducts() {
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_PRODUCTS_URL, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    JSONObject mainObj = new JSONObject(response);
-//                    if (mainObj.getString("status").equals("success")) {
-//                        JSONArray productsArray = mainObj.getJSONArray("products");
-//                        for (int i = 0; i < productsArray.length(); i++) {
-//                            JSONObject object = productsArray.getJSONObject(i);
-//                            Product product = new Product(
-//                                    object.getString("name"),
-//                                    object.getString("image"),
-//                                    object.getString("status"),
-//                                    object.getDouble("price"),
-//                                    object.getDouble("discount"),
-//                                    object.getInt("stock"),
-//                                    object.getInt("id")
-//                            );
-//                            products.add(product);
-//                        }
-//                        categoryAdapter.notifyDataSetChanged();
-//                    } else {
-//
-//                    }
-//                } catch (JSONException e) {
-//                    throw new RuntimeException(e);
-//                }
-//
-//
-//            }
-//        }, error -> {
-//
-//        });
-//        queue.add(request);
-//    }
 
     void getRecentOffers(){
 

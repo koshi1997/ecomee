@@ -67,6 +67,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 Toast.makeText(ProductDetailsActivity.this, "Product Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override

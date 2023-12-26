@@ -98,6 +98,7 @@ public class CheckoutActivity extends AppCompatActivity {
         });
 
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     void processOrder() {

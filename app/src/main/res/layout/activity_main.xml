@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +30,9 @@
             app:mt_navIconEnabled="true"
             app:mt_maxSuggestionsCount="10"
             app:mt_speechMode="true"
-            app:mt_hintColor="#A9AAA2"/>
+            app:mt_hintColor="#A9AAA2"
+            />
+
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -59,7 +62,7 @@
                     app:showNavigationButtons="false"
                     app:showCaption="true"
                     app:autoPlay="true"
-                  />
+                    />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
