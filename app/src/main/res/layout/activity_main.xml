@@ -35,7 +35,6 @@
                 app:mt_hint="Search your favorite product"
                 app:mt_roundedSearchBarEnabled="true"
                 app:mt_placeholder="eCommerce"
-                app:mt_navIconEnabled="true"
                 app:mt_maxSuggestionsCount="10"
                 app:mt_speechMode="true"
                 app:mt_hintColor="#A9AAA2"
