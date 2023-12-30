@@ -1,11 +1,11 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.ecomee.databinding.ActivityPaymentBinding;
-import com.example.ecomee.utility.Constants;
+import com.example.eMobi.databinding.ActivityPaymentBinding;
+import com.example.eMobi.utility.Constants;
 
 public class PaymentActivity extends AppCompatActivity {
 

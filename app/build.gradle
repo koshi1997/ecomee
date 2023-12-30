@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.ecomee'
+    namespace 'com.example.eMobi'
     compileSdk 34
 
     buildFeatures{
@@ -12,7 +12,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.ecomee"
+        applicationId "com.example.eMobi"
         minSdk 24
         targetSdk 34
         versionCode 1

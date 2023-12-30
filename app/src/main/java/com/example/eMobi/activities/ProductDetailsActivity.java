@@ -1,9 +1,8 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,10 +18,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.ecomee.R;
-import com.example.ecomee.databinding.ActivityProductDetailsBinding;
-import com.example.ecomee.model.Product;
-import com.example.ecomee.utility.Constants;
+import com.example.eMobi.R;
+import com.example.eMobi.databinding.ActivityProductDetailsBinding;
+import com.example.eMobi.model.Product;
+import com.example.eMobi.utility.Constants;
 import com.hishd.tinycart.model.Cart;
 import com.hishd.tinycart.util.TinyCartHelper;
 

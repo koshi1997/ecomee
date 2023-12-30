@@ -1,4 +1,4 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,10 +9,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ecomee.adapters.ProductAdapter;
-import com.example.ecomee.databinding.ActivityCategoryBinding;
-import com.example.ecomee.model.Product;
-import com.example.ecomee.utility.Constants;
+import com.example.eMobi.adapters.ProductAdapter;
+import com.example.eMobi.databinding.ActivitySearchBinding;
+import com.example.eMobi.model.Product;
+import com.example.eMobi.utility.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,46 +20,43 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+public class SearchActivity extends AppCompatActivity {
 
-public class CategoryActivity extends AppCompatActivity {
-
-    ActivityCategoryBinding binding;
+    ActivitySearchBinding binding;
     ProductAdapter productAdapter;
     ArrayList<Product> products;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         products = new ArrayList<>();
         productAdapter = new ProductAdapter(this, products);
 
-        int catId = getIntent().getIntExtra("catId",0);
-        String categoryName = getIntent().getStringExtra("categoryName");
+        String query = getIntent().getStringExtra("query");
 
-        getSupportActionBar().setTitle(categoryName);
+        getSupportActionBar().setTitle(query);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        getProducts(catId);
+        getProducts(query);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         binding.productList.setLayoutManager(layoutManager);
         binding.productList.setAdapter(productAdapter);
-
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
     }
 
-    void getProducts(int catId) {
+    void getProducts(String query) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constants.GET_PRODUCTS_URL + "?category_id=" + catId;
+        String url = Constants.GET_PRODUCTS_URL + "?q=" + query;
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
             try {
                 JSONObject object = new JSONObject(response);

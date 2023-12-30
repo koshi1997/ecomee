@@ -1,4 +1,4 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ecomee.R;
-import com.example.ecomee.adapters.CategoryAdapter;
-import com.example.ecomee.adapters.ProductAdapter;
-import com.example.ecomee.databinding.ActivityMainBinding;
-import com.example.ecomee.model.Category;
-import com.example.ecomee.model.Product;
-import com.example.ecomee.utility.Constants;
+import com.example.eMobi.R;
+import com.example.eMobi.adapters.CategoryAdapter;
+import com.example.eMobi.adapters.ProductAdapter;
+import com.example.eMobi.databinding.ActivityMainBinding;
+import com.example.eMobi.model.Category;
+import com.example.eMobi.model.Product;
+import com.example.eMobi.utility.Constants;
 import com.google.android.material.navigation.NavigationView;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 

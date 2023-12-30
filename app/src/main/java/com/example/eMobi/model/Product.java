@@ -1,4 +1,4 @@
-package com.example.ecomee.model;
+package com.example.eMobi.model;
 
 import com.hishd.tinycart.model.Item;
 

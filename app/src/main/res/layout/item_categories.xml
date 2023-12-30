@@ -10,6 +10,7 @@
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
         android:background="#00BCD4"
         android:cropToPadding="false"
         android:padding="5dp"
@@ -19,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_mutate_background="true"
-        app:riv_oval="true" />
+        app:riv_oval="false" />
 
     <TextView
         android:id="@+id/label"

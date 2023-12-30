@@ -8,17 +8,17 @@
     android:padding="15dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:background="#4CAF50"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="eCome"
+        android:text="eMobi"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />

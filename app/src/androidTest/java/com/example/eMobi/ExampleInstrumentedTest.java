@@ -1,4 +1,4 @@
-package com.example.ecomee;
+package com.example.eMobi;
 
 import android.content.Context;
 

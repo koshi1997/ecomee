@@ -1,4 +1,4 @@
-package com.example.ecomee.adapters;
+package com.example.eMobi.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.ecomee.R;
-import com.example.ecomee.activities.ProductDetailsActivity;
-import com.example.ecomee.databinding.ItemProductBinding;
-import com.example.ecomee.model.Category;
-import com.example.ecomee.model.Product;
+import com.example.eMobi.R;
+import com.example.eMobi.activities.ProductDetailsActivity;
+import com.example.eMobi.databinding.ItemProductBinding;
+import com.example.eMobi.model.Product;
 
 import java.util.ArrayList;
 

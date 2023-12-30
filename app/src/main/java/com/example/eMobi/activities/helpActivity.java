@@ -1,10 +1,10 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.ecomee.databinding.ActivityHelpBinding;
+import com.example.eMobi.databinding.ActivityHelpBinding;
 
 public class helpActivity extends AppCompatActivity {
 

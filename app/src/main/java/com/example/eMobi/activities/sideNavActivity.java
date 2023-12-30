@@ -1,10 +1,10 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.ecomee.databinding.ActivitySideNavBinding;
+import com.example.eMobi.databinding.ActivitySideNavBinding;
 
 public class sideNavActivity extends AppCompatActivity {
 

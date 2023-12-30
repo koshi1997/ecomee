@@ -1,4 +1,4 @@
-package com.example.ecomee.activities;
+package com.example.eMobi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.ecomee.adapters.CartAdapter;
-import com.example.ecomee.databinding.ActivityCartBinding;
-import com.example.ecomee.model.Product;
+import com.example.eMobi.adapters.CartAdapter;
+import com.example.eMobi.databinding.ActivityCartBinding;
+import com.example.eMobi.model.Product;
 import com.hishd.tinycart.model.Cart;
 import com.hishd.tinycart.model.Item;
 import com.hishd.tinycart.util.TinyCartHelper;
