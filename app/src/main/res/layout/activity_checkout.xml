@@ -41,7 +41,8 @@
                         android:paddingBottom="15dp"
                         android:text="Card Details"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/motley"/>
 
 
                     <View
@@ -64,20 +65,21 @@
                             android:text="Sub Total"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/motley"/>
 
                         <TextView
                             android:id="@+id/subTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/roboto_medium"
                             android:gravity="right"
                             android:padding="5dp"
                             android:text="LKR 200"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/motley"/>
                     </LinearLayout>
 
                     <View
@@ -101,20 +103,20 @@
                             android:text="Tax"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:fontFamily="@font/motley"/>
 
                         <TextView
                             android:id="@+id/tax"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/motley"
                             android:gravity="right"
                             android:padding="5dp"
                             android:text="11%"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                             />
 
                     </LinearLayout>
 
@@ -139,14 +141,14 @@
                             android:text="Total"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:fontFamily="@font/motley"/>
 
                         <TextView
                             android:id="@+id/total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/motley"
                             android:gravity="right"
                             android:padding="5dp"
                             android:text="LKR 0.0"
@@ -187,7 +189,7 @@
                         android:paddingBottom="15dp"
                         android:text="Infromation"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/motley" />
 
                     <View
                         android:id="@+id/view6"
@@ -204,7 +206,8 @@
                         android:ems="10"
                         android:hint="Full Name"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"/>
 
                     <EditText
                         android:id="@+id/emailBox"
@@ -215,7 +218,8 @@
                         android:ems="10"
                         android:hint="Email Address"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"/>
 
                     <EditText
                         android:id="@+id/phoneBox"
@@ -226,7 +230,8 @@
                         android:ems="10"
                         android:hint="Phone Number"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"/>
 
                     <EditText
                         android:id="@+id/addressBox"
@@ -237,7 +242,8 @@
                         android:ems="10"
                         android:hint="Address"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"/>
 
                     <EditText
                         android:id="@+id/dateBox"
@@ -248,7 +254,8 @@
                         android:ems="10"
                         android:hint="Date Shipping"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"/>
 
                     <EditText
                         android:id="@+id/commentBox"
@@ -259,7 +266,9 @@
                         android:ems="10"
                         android:hint="Additional Comments"
                         android:inputType="textPersonName"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:fontFamily="@font/motley"
+                        />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
